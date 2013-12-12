@@ -1,0 +1,8 @@
+#navigation ul {list-style: none; padding: 0;}
+#navigation ul li a {
+	float: right;
+	text-decoration: none; 
+	padding: .3em .3em .5em .5em; 
+	font-size: 1.1em;
+	color: black;
+}

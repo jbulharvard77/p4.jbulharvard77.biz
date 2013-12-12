@@ -1,11 +1,22 @@
-<p>
-	Hello World! You have successfully spawned a new application.
-</p>
+<?php if($user): ?>	
 
-<p>
-	This message is being triggered via the c_index.php controller, within the index() method.
-</p>
+	Router::redirect("/announcements/create/");
 
-<p>
-	<strong>Since everything is in working order, you should now delete <?php echo APP_PATH?>diagnostics.php</strong>
-</p>
+<?php else: ?>
+
+	<form method='POST' action='/users/p_signup'>
+
+	    Email<br>
+	    <input type='text' name='email'>
+	    <br><br>
+
+	    Password<br>
+	    <input type='password' name='password'>
+	    <br><br>
+
+	    <input type='submit' value='Sign up'>
+
+	</form>
+
+<?php endif; ?>
+	
