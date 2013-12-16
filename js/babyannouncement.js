@@ -86,28 +86,18 @@ Print
 -------------------------------------------------------------------------------------------------*/
 $('#print-btn').click(function() {
 
-	var canvas_clone = $('#canvas').clone();
+	$.ajax({
+		type: 'POST',
+		url: 'announcement/create.php',
+		success: function(response)	{
+			$('#print-btn').html(response);
+		},
+		data:  {
+			chosen_color: $(this).css('background-color'),
+			gender = label.html();
 
-	var canvas = canvas_clone.prop('outerHTML');
-
-	var new_tab_contents  = '<html>';
-
-	new_tab_contents += '<head>';
-    new_tab_contents += '<link rel="stylesheet" href="css/main.css" type="text/css">'; // Don't forget your CSS so the card looks good in the new tab!
-    new_tab_contents += '<link rel="stylesheet" href="css/features.css" type="text/css">';
-    new_tab_contents += '</head>';
-    new_tab_contents += '<body>'; 
-    new_tab_contents += canvas; // Here's where we add the card to our HTML for the new tab
-    new_tab_contents += '</body></html>';
-
-    var new_tab =  window.open();
-
-    new_tab.document.open();
-
-    new_tab.document.write(new_tab_contents);
-
-     new_tab.document.close();
-    		
+		} 
+	})
 });
 
 
