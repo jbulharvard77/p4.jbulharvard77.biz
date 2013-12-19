@@ -9,17 +9,40 @@ class users_controller extends base_controller {
         echo "This is the index page";
     }
 
-    public function signup() {
+    public function signup($error = NULL) {
 
         # Setup view
-            $this->template->content = View::instance('v_index_index');
+            $this->template->content = View::instance('v_users_signup');
             $this->template->title   = "Sign Up";
+
+        # Pass data to the view
+            $this->template->content->error = $error;
 
         # Render template
             echo $this->template;
     }
 
     public function p_signup() {
+
+        # Check to see if email already exists
+
+            $q = "SELECT email
+            FROM users 
+            WHERE email = '" . $_POST['email'] . "'";
+
+            $email_dupe = DB::instance(DB_NAME)->select_field($q);
+               
+        #If it does produce an error       
+
+            if($email_dupe){
+                
+            Router::redirect('/users/signup/email_dupe');
+                
+        } 
+
+        #Otherwise proceed with sign up
+               
+        else {
 
         # Encrypt the password  
             $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);            
@@ -28,16 +51,20 @@ class users_controller extends base_controller {
             $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string()); 
 
         # Insert this user into the database
-            $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
+            $user = DB::instance(DB_NAME)->insert('users', $_POST);
 
-            Router::redirect("/users/login/");; //need to route to the create page
+            Router::redirect("/users/login/");
+        }
     }
 
-    public function login() {
+    public function login($error = NULL) {
 
         # Setup view
             $this->template->content = View::instance('v_users_login');
             $this->template->title   = "Login";
+
+            $this->template->content->error = $error;
+
 
         # Render template
             echo $this->template;
@@ -84,7 +111,7 @@ class users_controller extends base_controller {
             setcookie("token", $token, strtotime('+1 year'), '/');
 
         # Send them to the announcements
-            Router::redirect("/announcements/existing/");
+            Router::redirect("/users/profile/");
 
             }
 
@@ -110,6 +137,24 @@ class users_controller extends base_controller {
             Router::redirect("/");
 
         }
-    
 
-} # end of the class
+    public function profile() {
+
+        # Make sure user is logged in if they want to use anything in this controller
+            if(!$this->user) {
+            Router::redirect('/users/login');
+        }
+
+        # Setup view
+            $this->template->content = View::instance('v_users_profile');
+
+        #Include user information
+            $this->template->title = "Profile";
+
+        # Render template
+            echo $this->template;
+
+        }
+
+
+   }

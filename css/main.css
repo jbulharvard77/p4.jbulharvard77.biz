@@ -1,8 +1,8 @@
-#navigation ul {list-style: none; padding: 0;}
-#navigation ul li a {
-	float: right;
-	text-decoration: none; 
-	padding: .3em .3em .5em .5em; 
-	font-size: 1.1em;
-	color: black;
+/*css*/
+
+#header-image	{
+	background-image: url('../images/snow.jpg');
+	background-size: 1400px 150px;
+	background-repeat: no-repeat;
 }
+
