@@ -1,15 +1,19 @@
-<form method='POST' action='/users/p_login'>
+<div id='wrap' class='span-6 prepend-1'>
 
-    Email<br>
-    <input type='text' name='email'>
+	<h2>Login</h2>
 
-    <br><br>
+		<form method='POST' action='/users/p_login'>
 
-    Password<br>
-    <input type='password' name='password'>
+		    Email<br>
+		    <input type='text' name='email'>
+		    <br>
 
-    <br><br>
+		    Password<br>
+		    <input type='password' name='password'>
+		    <br>
 
-    <input type='submit' value='Log in'>
+		    <input type='submit' value='Log in'>
 
-</form>
+		</form>
+
+</div>

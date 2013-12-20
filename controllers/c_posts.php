@@ -11,14 +11,13 @@ class posts_controller extends base_controller {
         }
     }
 
-    public function add($error = NULL, $user = NULL) {
+    public function add($error = NULL) {
 
         # Setup view
             $this->template->content = View::instance('v_posts_add');
             $this->template->title   = "New Post";
 
             $this->template->content->error = $error;
-            $this->template->content->user = $this->user->user_id;
 
         # Render template
             echo $this->template;
@@ -28,10 +27,11 @@ class posts_controller extends base_controller {
     public function p_add() {
 
         #If date exists inform them of duplicate
-           $q = "SELECT date
+           $q = "SELECT 
+                posts.date
             FROM posts 
             WHERE date = '" . $_POST['date'] . "'
-            and user_id = '" . $_POST['user_id'] . "'";
+            and user_id = ".$this->user->user_id;
 
             $date_dupe = DB::instance(DB_NAME)->select_field($q);
 
@@ -64,23 +64,17 @@ class posts_controller extends base_controller {
             $this->template->content = View::instance('v_posts_display');
             $this->template->title   = "Display Plow Requests";
 
-
         # Build the query
-            $q = "SELECT 
-                posts .* ,  
+            $q = "SELECT   
                 posts.date
             FROM posts
-            INNER JOIN users 
-                ON posts.user_id = users.user_id";
+            WHERE user_id = ".$this->user->user_id;
 
         # Run the query
             $posts = DB::instance(DB_NAME)->select_rows($q);
 
         # Pass data to the View
             $this->template->content->posts = $posts;
-
-        # Render the View
-            echo $this->template;
 
         # Render template
             echo $this->template;

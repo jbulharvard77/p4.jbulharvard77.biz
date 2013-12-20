@@ -57,13 +57,15 @@ class users_controller extends base_controller {
         }
     }
 
-    public function login($error = NULL) {
+    public function login($error = NULL, $type = NULL) {
 
         # Setup view
             $this->template->content = View::instance('v_users_login');
             $this->template->title   = "Login";
 
+        #Pass data to the view
             $this->template->content->error = $error;
+            $this->template->content->type = $type;
 
 
         # Render template
@@ -96,7 +98,6 @@ class users_controller extends base_controller {
             }
 
         # But if we did, login succeeded!  
-
             else {
 
         /* 
@@ -110,8 +111,22 @@ class users_controller extends base_controller {
         */
             setcookie("token", $token, strtotime('+1 year'), '/');
 
-        # Send them to the announcements
-            Router::redirect("/users/profile/");
+        #Query to pull discern customers from plowers
+            $q = "SELECT user_type 
+            FROM users
+            WHERE users.user_type = 'customer'";
+
+            $customer = DB::instance(DB_NAME)->select_field($q);
+
+        #If a customer route here
+                if ($customer) {
+                    Router::redirect("/users/profile/customer");
+                }
+
+        #If a plower route here
+                else  {
+                    Router::redirect("/users/profile/plower");
+                }
 
             }
 
@@ -156,5 +171,54 @@ class users_controller extends base_controller {
 
         }
 
+    public function plowersignup($error = NULL) {
 
-   }
+        # Setup view
+            $this->template->content = View::instance('v_users_plowersignup');
+            $this->template->title   = "Sign Up";
+
+        # Pass data to the view
+            $this->template->content->error = $error;
+
+        # Render template
+            echo $this->template;
+
+        }
+
+    public function p_plowersignup() {
+
+        # Check to see if email already exists
+
+            $q = "SELECT email
+            FROM users 
+            WHERE email = '" . $_POST['email'] . "'";
+
+            $email_dupe = DB::instance(DB_NAME)->select_field($q);
+               
+        #If it does produce an error       
+
+            if($email_dupe){
+                
+            Router::redirect('/users/plowersignup/email_dupe');
+                
+        } 
+
+        #Otherwise proceed with sign up
+               
+        else {
+
+        # Encrypt the password  
+            $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);            
+
+        # Create an encrypted token via their email address and a random string
+            $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string()); 
+
+        # Insert this user into the database
+            $user = DB::instance(DB_NAME)->insert('users', $_POST);
+
+            Router::redirect("/users/login/");
+        }
+    }
+
+
+} #eoc

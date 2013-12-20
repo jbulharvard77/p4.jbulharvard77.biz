@@ -2,7 +2,40 @@
 
 #header-image	{
 	background-image: url('../images/snow.jpg');
-	background-size: 1400px 150px;
-	background-repeat: no-repeat;
+	background-repeat: repeat;
+	text-align: center;
 }
 
+#header   {
+	background-color: #6495ED;
+}
+
+
+#navigation	{
+	float: right;
+	margin-bottom: 25px;
+	font-size: 125%;
+}
+
+#wrap	{
+	border: 5px solid #4682B4;
+	border-radius: 15px;
+	margin-bottom: 30px;
+}
+
+#wrap-profile	{
+	border: 5px solid #4682B4;
+	border-radius: 15px;
+	margin-bottom: 30px;
+	font-size: 150%;
+}
+
+#submit-p	{
+	font-size: 150%;
+}
+
+#newuser	{
+	height: 100px;
+	width: 400px;
+	font-size: 150%;
+}

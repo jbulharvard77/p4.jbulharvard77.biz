@@ -2,7 +2,7 @@
 
 	<h2>Sign Up Form</h2>
 
-		<form id='profile' method='POST' action='/users/p_signup'>
+		<form id='profile' method='POST' action='/users/p_plowersignup'>
 
 			    Email<br>
 			    <input type='text' name='email'>
@@ -16,27 +16,7 @@
 			    <input type='text' name='name'>
 			    <br>
 
-			    Street Address<br>
-			    <input type='text' name='address'>
-			    <br>
-
-			    City<br>
-			    <input type='text' name='city'>
-			    <br>
-
-			    Zip<br>
-			    <input type='text' name='zip'>
-			    <br>
-
-			    Approximately how long is your driveway:<br>
-			    <input type='text' name='length' size='5'> Feet
-			    <br>
-
-			    Approximately how wide is your driveway:<br>
-			    <input type='text' name='width' size='5'> Feet
-			    <br>
-
-			    <input type='hidden' name="user_type" value="customer">
+			    <input type='hidden' name="user_type" value="plower">
 
 			    <input type='submit' value='Sign up'><br><br>
 
