@@ -25,7 +25,7 @@ class index_controller extends base_controller {
 		#Pass data to the view
 			$this->template->content->type = $type;
 
-			#Query to pull discern customers from plowers
+		#Query to pull discern customers from plowers
             $q = "SELECT user_type 
             FROM users
             WHERE users.user_type = 'customer'";
@@ -34,12 +34,12 @@ class index_controller extends base_controller {
 
         #If a customer route here
                 if ($customer) {
-                    Router::redirect("/index/customer");
+                    Router::redirect("/users/profile/customer");
                 }
 
         #If a plower route here
                 else  {
-                    Router::redirect("/index/plower");
+                    Router::redirect("/users/profile/plower");
 				}
 		# CSS/JS includes
 			/*

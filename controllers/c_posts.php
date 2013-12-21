@@ -81,4 +81,35 @@ class posts_controller extends base_controller {
 
     }
 
-}
+    public function plowerdisplay() {
+
+        # Setup view
+            $this->template->content = View::instance('v_posts_plowerdisplay');
+            $this->template->title   = "Display Plow Requests";
+
+        # Build the query
+            $q = "SELECT   
+                posts.date,
+                users.name,
+                users.address,
+                users.city,
+                users.zip
+            FROM posts
+            INNER JOIN users
+                ON posts.user_id = users.user_id";
+
+        # Run the query
+            $posts = DB::instance(DB_NAME)->select_rows($q);
+
+        # Date variable
+            $today = date('y-m-d');
+
+        # Pass data to the View
+            $this->template->content->posts = $posts;
+            $this->template->content->today = $today;
+
+        # Render template
+            echo $this->template;
+    }
+
+} #eoc
