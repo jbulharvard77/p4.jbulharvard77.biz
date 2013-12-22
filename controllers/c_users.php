@@ -57,7 +57,7 @@ class users_controller extends base_controller {
         }
     }
 
-    public function login($error = NULL, $type = NULL) {
+    public function login($error = NULL) {
 
         # Setup view
             $this->template->content = View::instance('v_users_login');
@@ -65,7 +65,6 @@ class users_controller extends base_controller {
 
         #Pass data to the view
             $this->template->content->error = $error;
-            $this->template->content->type = $type;
 
 
         # Render template
@@ -93,7 +92,7 @@ class users_controller extends base_controller {
             if(!$token) {
 
         # Send them back to the login page
-            Router::redirect("/users/login/");
+            Router::redirect("/users/login/error");
 
             }
 
@@ -111,23 +110,9 @@ class users_controller extends base_controller {
         */
             setcookie("token", $token, strtotime('+1 year'), '/');
 
-        #Query to pull discern customers from plowers
-            $q = "SELECT user_type 
-            FROM users
-            WHERE users.user_type = 'customer'";
-
-            $customer = DB::instance(DB_NAME)->select_field($q);
-
-        #If a customer route here
-                if ($customer) {
-                    Router::redirect("/users/profile/customer");
-                }
-
-        #If a plower route here
-                else  {
-                    Router::redirect("/users/profile/plower");
-                }
-
+        #Rout to profile
+            Router::redirect("/users/profile/");
+            
             }
 
         }
@@ -163,8 +148,19 @@ class users_controller extends base_controller {
         # Setup view
             $this->template->content = View::instance('v_users_profile');
 
-        #Include user information
+        # Setup title
             $this->template->title = "Profile";
+
+        #Query to discern customers from plowers
+            $q = "SELECT 
+                users.user_type 
+            FROM users
+            WHERE user_id =". $this->user->user_id;
+
+            $corp = DB::instance(DB_NAME)->select_field($q);              
+
+         #Pass info to view
+            $this->template->content->corp = $corp;
 
         # Render template
             echo $this->template;
@@ -218,6 +214,18 @@ class users_controller extends base_controller {
 
             Router::redirect("/users/login/");
         }
+    }
+
+    public function size()  {
+
+        # Setup view
+            $this->template->content = View::instance('v_users_size');
+            $this->template->title   = "Price";
+
+            # Render template
+            echo $this->template;
+
+
     }
 
 

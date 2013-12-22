@@ -4,36 +4,28 @@
 
 		<form id='profile' method='POST' action='/users/p_signup'>
 
-			    Email<br>
+			    Email:<br>
 			    <input type='text' name='email'>
 			    <br>
 
-			    Password<br>
+			    Password:<br>
 			    <input type='password' name='password'>
 			    <br>
 
-			    Name<br>
+			    Name:<br>
 			    <input type='text' name='name'>
 			    <br>
 
-			    Street Address<br>
+			    Street Address:<br>
 			    <input type='text' name='address'>
 			    <br>
 
-			    City<br>
+			    City:<br>
 			    <input type='text' name='city'>
 			    <br>
 
-			    Zip<br>
+			    Zip:<br>
 			    <input type='text' name='zip'>
-			    <br>
-
-			    Approximately how long is your driveway:<br>
-			    <input type='text' name='length' size='5'> Feet
-			    <br>
-
-			    Approximately how wide is your driveway:<br>
-			    <input type='text' name='width' size='5'> Feet
 			    <br>
 
 			    <input type='hidden' name="user_type" value="customer">

@@ -17,16 +17,17 @@
 <body>
 <div class='container'>
 
-	<div id='header-image' class='span-24'>
+	<div id='header' class='span-24'>
 
-		<h1>Easy Plow</h1>
+		Easy Plow
 
 	</div>
 
 		<?php if($user): ?>
 
-			<div id='navigation' class='span-3 prepend-21'>
+			<div id='navigation' class='span-5 prepend-19'>
 	
+				<a href="/">[Home]</a>
 				<a href="/users/profile"> [Profile]</a>
       			<a href="/users/logout"> [Log out]</a>
 
@@ -34,23 +35,22 @@
       		
 		<?php else: ?>
 
-			<div id='navigation' class='span-2 prepend-22'>
+			<div id='navigation' class='span-4 prepend-20'>
    
-      			<a href="/users/login">[Log in]</a>
+      			<a href="/">[Home]</a>
+      			<a href="/users/login"> [Log in]</a>
 
       		</div>
 
       	<?php endif; ?>
-   
-
-
-
-
 
 
 	<?php if(isset($content)) echo $content; ?>
 
 	<?php if(isset($client_files_body)) echo $client_files_body; ?>
 </div>
+<script src="../js/driveway.js"></script>
+<script src="../js/jquery-latest.js"> </script> 
+<script src="../js/jquery.tablesorter.js"> </script>
 </body>
 </html>

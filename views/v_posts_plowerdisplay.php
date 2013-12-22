@@ -1,14 +1,51 @@
+<h2>Available plow requests</h2>	
 
-	
-	<?php foreach($posts as $post): ?>
+			<table id="myTable" class="tablesorter"> 
+				<thead> 
+				<tr> 
+				    <th>Date</th> 
+				    <th>Name</th> 
+				    <th>Address</th> 
+				    <th>City</th> 
+				    <th>Zip</th> 
+				</tr> 
+				</thead>
 
-		<?php if ($post['date'] > $today): ?> 
+		<?php foreach($posts as $post): ?>
+				
+				<tbody> 
+				<tr> 
+					<td><?=$post['date']?></td>
+					<td><?=$post['name']?></td>
+					<td><?=$post['address']?></td>
+					<td><?=$post['city']?></td>
+					<td><?=$post['zip']?></td>
+					<td><form method='POST' action='/posts/p_plowerselect' class='avail'>			
 
-	<?=$post['date']?><?=$post['name']?><?=$post['address']?><?=$post['city']?><?=$post['zip']?><br>
+						<input type='hidden' name="selected" value='yes'>
+			
+						<input type="submit" value="Select">
 
-		<?php endif; ?>
+					</form></td>
 
-	<?php endforeach; ?>
+
+		<?php endforeach; ?>
+
+		<script>
+			$(document).ready(function() 
+		    { 
+		        $("#myTable").tablesorter(); 
+		    } 
+		); 
+
+			$(document).ready(function() 
+		    { 
+		        $("#myTable").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+		    } 
+		); 
+		</script>
+    
+
 
 
 

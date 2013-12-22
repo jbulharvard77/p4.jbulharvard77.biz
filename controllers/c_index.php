@@ -12,7 +12,7 @@ class index_controller extends base_controller {
 	/*-------------------------------------------------------------------------------------------------
 	Accessed via http://localhost/index/index/
 	-------------------------------------------------------------------------------------------------*/
-	public function index($type = NULL) {
+	public function index() {
 
 		
 		# Any method that loads a view will commonly start with this
@@ -22,25 +22,7 @@ class index_controller extends base_controller {
 		# Now set the <title> tag
 			$this->template->title = "Welcome";
 
-		#Pass data to the view
-			$this->template->content->type = $type;
-
-		#Query to pull discern customers from plowers
-            $q = "SELECT user_type 
-            FROM users
-            WHERE users.user_type = 'customer'";
-
-            $customer = DB::instance(DB_NAME)->select_field($q);
-
-        #If a customer route here
-                if ($customer) {
-                    Router::redirect("/users/profile/customer");
-                }
-
-        #If a plower route here
-                else  {
-                    Router::redirect("/users/profile/plower");
-				}
+		
 		# CSS/JS includes
 			/*
 			$client_files_head = Array("");

@@ -17,3 +17,11 @@
 		</form>
 
 </div>
+
+<div class='span-24'>
+	<?php if(isset($error)): ?>
+
+		<h3>Login failed.  Please try again.</h3>
+
+	<?php endif; ?><br>
+</div>

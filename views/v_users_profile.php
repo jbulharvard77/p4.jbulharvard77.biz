@@ -1,8 +1,8 @@
-<?php if (isset($type) && $type == 'customer'): ?>
+<?php if (isset($corp) && $corp == 'customer'): ?>
 
 	<div id='wrap-profile' class='span-9 prepend-1'>
 
-		<h2>Your Information</h2>
+		<h2>test</h2>
 
 			Email: <?=$user->email?><br>
 			Name: <?=$user->name?><br>
@@ -30,4 +30,14 @@
 
 	</div><br><br><br>
 
+		<div class='span-24'>
+
+		<form action='/posts/plowerdisplay' id='viewrequests'>
+			<input id='submit-p' type='submit' value= 'Click here to see pending requests.'>
+		</form>
+
+	</div>
+
+
 <?php endif; ?>
+

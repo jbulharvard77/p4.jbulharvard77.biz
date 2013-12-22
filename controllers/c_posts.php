@@ -47,9 +47,18 @@ class posts_controller extends base_controller {
 
         # Unix timestamp of when this post was created
             $_POST['created']  = Time::now();
+           
+        #Query to get city
+            $q = "SELECT
+                users.city
+                FROM users
+                WHERE user_id = ".$this->user->user_id;
+
+            $city = DB::instance(DB_NAME)->select_field($q);
+
+            $_POST['city'] = $city;
 
         # Insert
-        # Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
             DB::instance(DB_NAME)->insert('posts', $_POST);
 
             Router::redirect("/posts/display/");
@@ -96,20 +105,27 @@ class posts_controller extends base_controller {
                 users.zip
             FROM posts
             INNER JOIN users
-                ON posts.user_id = users.user_id";
+                ON posts.user_id = users.user_id
+            WHERE posts.date >= SYSDATE()";
 
         # Run the query
             $posts = DB::instance(DB_NAME)->select_rows($q);
 
-        # Date variable
-            $today = date('y-m-d');
-
         # Pass data to the View
             $this->template->content->posts = $posts;
-            $this->template->content->today = $today;
 
         # Render template
             echo $this->template;
+    }
+
+    public function p_plowerselect()   {
+
+            $this->template->content->posts = $posts; 
+
+            $where = 'WHERE post_id = '.$this->posts->post_id;
+
+            DB::instance(DB_NAME)->insert('posts', $_POST, $where);
+
     }
 
 } #eoc

@@ -4,10 +4,15 @@
 	background-image: url('../images/snow.jpg');
 	background-repeat: repeat;
 	text-align: center;
+	color: white;
 }
 
 #header   {
 	background-color: #6495ED;
+	color: white;
+	height: 85px;
+	text-align:  center;
+	font-size: 30px;
 }
 
 
@@ -34,8 +39,27 @@
 	font-size: 150%;
 }
 
-#newuser	{
+.newuser	{
 	height: 100px;
 	width: 400px;
 	font-size: 150%;
+}
+
+.driveway	{
+	font-size: 20px;
+}
+
+#output		{
+	font-size: 20px;
+}
+
+#user	{
+	height: 50px;
+	width: 200px;
+	font-size: 20px;
+	margin-top: 150px;
+}
+
+#avail	{
+	font-size: 18px;
 }

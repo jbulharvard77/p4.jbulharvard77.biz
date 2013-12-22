@@ -1,39 +1,42 @@
+<?php if(!$user): ?>
 
-<?php if (isset($type) && $type == 'customer') :?>
-	<div class='span-20'>
-		
-		<h1>Welcome back <?=$user->name?>.</h1><br>
+	<div class='span-22 prepend-1'>
 
-		<form action="/posts/add" id='existing'>
-			<input type='submit' value= 'Click here to request to have you driveway plowed'>
+		<h2>Welcome to Easy Plow, where you can easily request that your residential driveway be plowed.</h2>
+
+	</div>
+
+	<div class='span-10 prepend-1'>
+
+		<form action='/users/size'>
+			<input class='newuser' type='submit' value='Click here if you are a new customer'>
 		</form>
 
 	</div>
 
-<?php elseif (isset($type) && $type === 'customer') :?>
-	<div class='span-20'>
-		
-		<h1>Welcome back <?=$user->name?>.</h1><br>
+	<div class='span-10 prepend-1'>
 
-		<h1>test</h1>
+		<form action='/users/plowersignup'>
+			<input class='newuser' type='submit' value='Click here if you are a new plower'>
+		</form>
 
 	</div>
 
 <?php else: ?>
-	<div class='span-22'>
 
-		<h2>Welcome to Easy Plow, where you can easily request that your residential driveway be plowed within a couple of hours of your request.</h2>
+	<h2>Welcome back!</h2><br>
 
-	</div>
+	<div class='span-10'>
 
-	<div class='span-12'>
-
-		<form action="/users/signup">
-			<input id='newuser' type='submit' value='Click here if you are a new customer'>
+		<form action='/users/profile'>
+			<input class='newuser' type='submit' value='Click here to head to your profile'>
 		</form>
 
 	</div>
 
+
 <?php endif; ?>
+
+
 
 
