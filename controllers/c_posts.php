@@ -26,7 +26,7 @@ class posts_controller extends base_controller {
 
     public function p_add() {
 
-        #If date exists inform them of duplicate
+        #Query to find dupe date
            $q = "SELECT 
                 posts.date
             FROM posts 
@@ -35,9 +35,18 @@ class posts_controller extends base_controller {
 
             $date_dupe = DB::instance(DB_NAME)->select_field($q);
 
+            #variable for current date
+            $current_date = gmDate("Y-m-d"); 
+
+            #if date is a duplicate produce an error
             if($date_dupe)  {
                 Router::redirect("/posts/add/date_dupe");
-        }
+            }
+
+            #if date is less than today produce an error 
+            elseif(($_POST['date']) < $current_date)   {
+                Router::redirect("/posts/add/wrong_date");
+            }
 
         #Otherwise scedule the service
             else   {

@@ -109,9 +109,9 @@ class users_controller extends base_controller {
         param 4 = the path of the cooke (a single forward slash sets it for the entire domain)
         */
             setcookie("token", $token, strtotime('+1 year'), '/');
-
-        #Rout to profile
-            Router::redirect("/users/profile/");
+        
+                #Route to profile
+                Router::redirect("/users/profile/");
             
             }
 

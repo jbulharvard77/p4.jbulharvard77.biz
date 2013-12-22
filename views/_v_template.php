@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-					
+				
 	<!-- Controller Specific JS/CSS -->
 	<?php if(isset($client_files_head)) echo $client_files_head; ?>
 	
@@ -50,7 +50,10 @@
 	<?php if(isset($client_files_body)) echo $client_files_body; ?>
 </div>
 <script src="../js/driveway.js"></script>
-<script src="../js/jquery-latest.js"> </script> 
-<script src="../js/jquery.tablesorter.js"> </script>
+<script src="../js/jquery-latest.js"></script> 
+<script src="../js/jquery.tablesorter.js"></script>
+<script src="../js/jquery.validate.js"></script>
+<script src="../js/jquery.validate.min.js"></script>
+<script src="../js/jqscripts.js"></script>
 </body>
 </html>

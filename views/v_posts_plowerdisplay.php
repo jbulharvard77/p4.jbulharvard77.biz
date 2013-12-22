@@ -28,7 +28,6 @@
 
 					</form></td>
 
-
 		<?php endforeach; ?>
 
 		<script>

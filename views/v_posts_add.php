@@ -17,6 +17,10 @@
 
 		<h2>You have already scheduled your driveway to be plowed on this date.</h2>
 
+	<?php elseif(isset($error) && $error == 'wrong_date'): ?>
+
+		<h2>Please select a date greater than or equal to today.</h2>
+
 	<?php endif; ?>
 
 </div>

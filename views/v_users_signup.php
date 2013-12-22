@@ -1,31 +1,32 @@
-<div id='wrap' class='span-8 prepend-1'>
+<div id='wrap' class='span-12 prepend-1'>
 
 	<h2>Sign Up Form</h2>
+		<p>*all field are required</p>
 
 		<form id='profile' method='POST' action='/users/p_signup'>
 
 			    Email:<br>
-			    <input type='text' name='email'>
+			    <input type='text' name='email' id='email' required>
 			    <br>
 
 			    Password:<br>
-			    <input type='password' name='password'>
+			    <input type='password' name='password' id ='password' required>
 			    <br>
 
 			    Name:<br>
-			    <input type='text' name='name'>
+			    <input type='text' name='name' id='name' required>
 			    <br>
 
 			    Street Address:<br>
-			    <input type='text' name='address'>
+			    <input type='text' name='address' id='address' required>
 			    <br>
 
 			    City:<br>
-			    <input type='text' name='city'>
+			    <input type='text' name='city' id='city' required>
 			    <br>
 
 			    Zip:<br>
-			    <input type='text' name='zip'>
+			    <input type='text' name='zip' id='zip' required>
 			    <br>
 
 			    <input type='hidden' name="user_type" value="customer">
@@ -46,3 +47,48 @@
 
 	<?php endif; ?><br>
 </div>
+
+<script>
+$("#profile").validate();
+
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+
+$( "input:blank" ).css( "background-color", "#bbbbff" );
+
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+var form = $( "#profile" );
+form.validate();
+$( "submit" ).click(function() {
+  alert( "Valid: " + form.valid() );
+});
+
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+
+$( "#profile" ).validate({
+  rules: {
+    email: {
+    	password: {
+    		name:  {
+    			address:  {
+    			   city:  {
+    			   	  zip:  {
+      					required: true
+   							}
+   						  }
+   						}
+   					}
+   				}
+    		}
+ 		 }
+});
+</script>
+
