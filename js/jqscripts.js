@@ -1,4 +1,4 @@
-<script>
+//Validator for signup page
 $("#profile").validate();
 
 jQuery.validator.setDefaults({
@@ -31,7 +31,8 @@ $( "#profile" ).validate({
     			address:  {
     			   city:  {
     			   	  zip:  {
-      					required: true
+      					required: true,
+                email: true
    							}
    						  }
    						}
@@ -40,5 +41,17 @@ $( "#profile" ).validate({
     		}
  		 }
 });
-</script>
 
+
+//tablesorter for the plower display page
+  $(document).ready(function() 
+    { 
+        $("#myTable").tablesorter(); 
+    } 
+); 
+
+  $(document).ready(function() 
+    { 
+        $("#myTable").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+    } 
+); 

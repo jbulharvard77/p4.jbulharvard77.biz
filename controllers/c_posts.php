@@ -82,7 +82,7 @@ class posts_controller extends base_controller {
             $this->template->content = View::instance('v_posts_display');
             $this->template->title   = "Display Plow Requests";
 
-        # Build the query
+        # Build the query to get posts
             $q = "SELECT   
                 posts.date
             FROM posts
@@ -106,12 +106,10 @@ class posts_controller extends base_controller {
             $this->template->title   = "Display Plow Requests";
 
         # Build the query
-            $q = "SELECT   
+            $q = "SELECT
+                posts.post_id,   
                 posts.date,
-                users.name,
-                users.address,
-                users.city,
-                users.zip
+                users.*
             FROM posts
             INNER JOIN users
                 ON posts.user_id = users.user_id
@@ -127,14 +125,28 @@ class posts_controller extends base_controller {
             echo $this->template;
     }
 
-    public function p_plowerselect()   {
 
-            $this->template->content->posts = $posts; 
+     public function p_email($post_id = NULL)   {
 
-            $where = 'WHERE post_id = '.$this->posts->post_id;
+            $this->template->content = View::instance('v_posts_email');
+            $this->template->content->post_id = $post_id;
 
-            DB::instance(DB_NAME)->insert('posts', $_POST, $where);
+            $q = "SELECT
+                posts.post_id,   
+                posts.date,
+                users.*
+            FROM posts
+            INNER JOIN users
+                ON posts.user_id = users.user_id
+            WHERE posts.post_id = ".$post_id;
 
+            $posts = DB::instance(DB_NAME)->select_rows($q);
+
+            $this->template->content->posts = $posts;
+                
+            echo $this->template;
+
+            
     }
 
 } #eoc

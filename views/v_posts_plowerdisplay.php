@@ -20,30 +20,14 @@
 					<td><?=$post['address']?></td>
 					<td><?=$post['city']?></td>
 					<td><?=$post['zip']?></td>
-					<td><form method='POST' action='/posts/p_plowerselect' class='avail'>			
-
-						<input type='hidden' name="selected" value='yes'>
-			
-						<input type="submit" value="Select">
-
+					<td><form method='POST' action='/posts/p_email/<?=$post['post_id']?>' class='avail'>
+							<input type='hidden' name="info" value="<?=$post['post_id']?>">			
+							<input type="submit" name='selected' value="Select">
 					</form></td>
 
 		<?php endforeach; ?>
 
-		<script>
-			$(document).ready(function() 
-		    { 
-		        $("#myTable").tablesorter(); 
-		    } 
-		); 
-
-			$(document).ready(function() 
-		    { 
-		        $("#myTable").tablesorter( {sortList: [[0,0], [1,0]]} ); 
-		    } 
-		); 
-		</script>
-    
+		
 
 
 

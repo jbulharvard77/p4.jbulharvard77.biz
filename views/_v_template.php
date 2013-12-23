@@ -55,5 +55,6 @@
 <script src="../js/jquery.validate.js"></script>
 <script src="../js/jquery.validate.min.js"></script>
 <script src="../js/jqscripts.js"></script>
+<script src="../js/email.js"></script>
 </body>
 </html>
