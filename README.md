@@ -7,8 +7,12 @@ The function of the app is to allow people the ability to schedule their drivewa
 
 Plowers will also sign up to the app.  They can view all of the current pending requests and choose which one they want to accept.  This would be convenient for a plower. for if they were on the road and checked their smart phone they could select a driveway that is close in proximity.
 
+The style is clearly lacking.  The functionality dominated my time.
+
 
 - The app will provide error messages if the input wasn't accepted
+- It will not allow you to schedule on the same day that you previously scheduled for
+- It will calculate the cost per the input from the customer
 
 
 Javascript
